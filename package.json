@@ -1,0 +1,15 @@
+{
+  "name": "snippr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Daniel Sharp",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "dependencies": {
+    "packery": "^2.1.2"
+  }
+}

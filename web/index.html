@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SnippR</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="packery.pkgd.min.js"></script>
+</head>
+<body>
+    <div id="popup-background" class="visible"></div>
+    <div class="snippet popup visible">
+        <div class="content" contenteditable="true">int randomInteger = rand() % max - min + 1) + min;</div>
+        <div class="tags">
+            <div class="tag">C</div>
+            <div class="tag">C++</div>
+        </div>
+        <div class="toolbar">
+            <div class="tool">Add tag</div>
+            <div class="tool danger">Delete</div>
+        </div>
+        <div class="comment-bar">
+            <div class="comment"> // Click outside to finish editing</div>
+            <div class="comment">// Click on a tag to remove it</div>
+        </div>
+    </div>
+    <div id="topnav">
+        <div id="blinking-cursor">&gt;</div>
+        <div id="current-tag">SnippR</div>
+        <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+        <span id="logout-link">Log out</span>
+        <div id="profile-picture">D</div>
+    </div>
+    <div id="sidenav">
+        <ul>
+            <li class="selected">* All snippets</li>
+        </ul>
+        <ul>
+            <li>&gt; C</li>
+            <li>&gt; C++</li>
+            <li>&gt; C#</li>
+            <li>&gt; JS</li>
+        </ul>
+        <ul>
+            <li>~ All tags</li>
+        </ul>
+    </div>
+    <div id="main" data-packery='{ "itemSelector": ".snippet", "gutter": 10 }'>
+        <div class="snippet">
+            <div class="content">int randomInteger = rand() % max - min + 1) + min;</div>
+            <div class="tags">
+                <div class="tag">C</div>
+                <div class="tag">C++</div>
+            </div>
+            <div class="toolbar">
+                <div class="tool">Add tag</div>
+                <div class="tool danger">Delete</div>
+            </div>
+            <div class="comment-bar">
+                <div class="comment"> // Click into to edit</div>
+                <div class="comment">// Click on a tag to remove it</div>
+            </div>
+        </div>
+
+        <div class="snippet">
+            <div class="content">Console.WriteLine("Hello World!");<br>Console.ReadLine();</div>
+            <div class="tags">
+                <div class="tag">C#</div>
+                <div class="tag">Hello World</div>
+            </div>
+            <div class="toolbar">
+                <div class="tool">Add tag</div>
+                <div class="tool danger">Delete</div>
+            </div>
+            <div class="comment-bar">
+                <div class="comment"> // Click into to edit</div>
+                <div class="comment">// Click on a tag to remove it</div>
+            </div>
+        </div>
+        <div class="snippet">
+            <div class="content">[] == ![] // true</span><br>[] + {} // [object Object]</span><br>{} + [] // 0</span></div>
+            <div class="tags">
+                <div class="tag">JS</div>
+            </div>
+            <div class="toolbar">
+                <div class="tool">Add tag</div>
+                <div class="tool danger">Delete</div>
+            </div>
+            <div class="comment-bar">
+                <div class="comment"> // Click into to edit</div>
+                <div class="comment">// Click on a tag to remove it</div>
+            </div>
+        </div>
+        <div class="snippet pseudo"><span>Add snippet</span></div>
+    </div>
+</body>
+</html>
