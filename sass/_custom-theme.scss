@@ -1,0 +1,31 @@
+@import "node_modules/bootstrap/scss/functions";
+// Bootstrap theme colors
+
+$theme-colors: (
+  "primary": #4fbe49,
+  "danger": #be4949,
+  "dark": #0e110e
+);
+
+$primary: map-get($theme-colors, "primary");
+$danger: map-get($theme-colors, "danger");
+$dark: map-get($theme-colors, "dark");
+
+@import "node_modules/bootstrap/scss/variables";
+
+$font-family-base: $font-family-monospace;
+
+// Bootstrap colors
+$navbar-dark-brand-color: #4fbe49;
+$navbar-dark-color: #454946;
+$body-bg: #242724;
+$body-color: #e4e4e4;
+$link-color: #406445;
+$link-color-active: $primary;
+$link-hover-color: $body-color;
+
+// Own colors
+$comment-color: #475046;
+$element-color: #1b1b1b;
+$tag-background: #2e5237;
+$newtag-background: #2e523744;
