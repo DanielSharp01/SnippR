@@ -1,8 +1,12 @@
 @import "_custom-theme";
 @import "node_modules/bootstrap/scss/bootstrap";
-@import "https://use.fontawesome.com/releases/v5.7.2/css/all.css";
 
 button:focus
+{
+    outline-color: $primary;
+}
+
+*:read-write:focus
 {
     outline-color: $primary;
 }
@@ -19,7 +23,7 @@ button:focus
     margin-right: 8px;
 }
 
-.container-fluid
+main.container-fluid
 {
     margin-top: 72px;
     overflow-x: hidden;
@@ -78,7 +82,7 @@ button:focus
     }
 }
 
-.container-fluid
+main.container-fluid
 {
     width: calc(100% - 224px);
     margin-left: 224px;
@@ -87,6 +91,16 @@ button:focus
 
 .element
 {
+    &.tag
+    {
+        width: 350px;
+        
+        .content
+        {
+            font-size: $h1-font-size;
+        }
+    }
+
     width: 500px;
     background: $element-color;
     display: flex;
@@ -168,27 +182,12 @@ button:focus
     }
 }
 
-.element.editable
-{
-    .tag:not(.new):hover
-    {
-        background: $danger;
-        box-shadow: 0 2px 6px 2px rgba(17, 19, 17, 0.7);
-        cursor: pointer;
-    }
-
-    .editable-visibility
-    {
-        display: block;
-    }
-}
-
 .element:hover
 {
     box-shadow: 0 2px 6px 2px rgba(17, 19, 17, 0.7);
 }
 
-.snippet:hover
+.element:hover
 {
     .toolbar
     {
@@ -240,5 +239,50 @@ button:focus
     {
         max-width: 64px;
         width: auto;
+    }
+}
+
+.dialog-wrapper
+{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 3;
+
+    .element
+    {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%, -50%);
+
+        .content:read-write:focus
+        {
+            outline: none;
+        }
+
+        .toolbar
+        {
+            opacity: 1;
+        }
+        .comment-bar
+        {
+            opacity: 1;
+        }
+
+        .editable-visibility
+        {
+            display: block;
+        }
+
+        .tag:not(.new):hover
+        {
+            background: $danger;
+            box-shadow: 0 2px 6px 2px rgba(17, 19, 17, 0.7);
+            cursor: pointer;
+        }
     }
 }
