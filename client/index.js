@@ -1,9 +1,12 @@
-const main = document.querySelector("main");
-const packery = new Packery(main,
-{
-    itemSelector: '.element',
-    gutter: 10
-});
+import Masonry from "./masonry/masonry.js"
+
+const masonry = new Masonry(document.querySelector(".masonry"));
+
+import "./sass/bootstrap.scss"
+import "./sass/general.scss"
+import "./sass/element.scss"
+import "./sass/element-dialog.scss"
+import "./masonry/masonry.scss"
 
 document.querySelector(".navbar-toggler").addEventListener("click", () => {
     document.querySelector(".sidenav").classList.toggle("show");
@@ -15,7 +18,7 @@ const eventsForElement = elem =>
     {
         e.stopPropagation();
         elem.remove();
-        packery.layout();
+        masonry.layout();
     });
 
     elem.addEventListener("click", e =>
@@ -36,9 +39,16 @@ document.querySelectorAll("#add-snippet-button").forEach(btn => btn.addEventList
         '<div class="toolbar"><a class="add-tag-button tool editable-visibility">Add tag</a><a class="delete-button tool danger">Delete</a></div>' +
         '<div class="comment-bar"><div class="comment"> // Click into to edit</div><div class="comment editable-visibility">// Click on a tag to remove it</div></div>';
     
+    let panel = document.createElement("div");
+    panel.classList.add("masonry-panel");
+    let content = document.createElement("div");
+    content.classList.add("masonry-content");
+    panel.appendChild(content);
+    content.appendChild(elem);
+
     eventsForElement(elem);
-    main.appendChild(elem);
-    packery.appended(elem);
+    masonry.container.appendChild(panel);
+    masonry.layout();
     openDialogSnippet(elem);
 }));
 
@@ -50,9 +60,16 @@ document.querySelectorAll("#add-tag-button").forEach(btn => btn.addEventListener
         '<div class="toolbar"><a class="add-tag-button tool editable-visibility">Add tag</a><a class="delete-button tool danger">Delete</a></div>' +
         '<div class="comment-bar"><div class="comment"> // Click into to edit</div><div class="comment editable-visibility">// Click on a tag to remove it</div></div>';
    
+    let panel = document.createElement("div");
+    panel.classList.add("masonry-panel");
+    let content = document.createElement("div");
+    content.classList.add("masonry-content");
+    panel.appendChild(content);
+    content.appendChild(elem);
+
     eventsForElement(elem);
-    main.appendChild(elem);
-    packery.appended(elem);
+    masonry.container.appendChild(panel);
+    masonry.layout();
     openDialogTag(elem);
 }));
 
@@ -109,7 +126,7 @@ const openDialogSnippet = (elem) =>
         e.stopPropagation();
         elem.remove();
         dialogWrapper.remove();
-        packery.layout();
+        masonry.layout();
     });
 
     elemClone.querySelectorAll(".tag").forEach(tag => tag.addEventListener("click", e => 
@@ -128,7 +145,7 @@ const openDialogSnippet = (elem) =>
         demoApplyEditedSnippet(elem, elemClone);
         elem.style.visibility = "visible";
         dialogWrapper.remove();
-        packery.layout();
+        masonry.layout();
     });
 
     dialogWrapper.appendChild(elemClone);
@@ -159,7 +176,7 @@ const openDialogTag = (elem) =>
         e.stopPropagation();
         elem.remove();
         dialogWrapper.remove();
-        packery.layout();
+        masonry.layout();
     });
 
     elemClone.addEventListener("click", e =>
@@ -174,7 +191,7 @@ const openDialogTag = (elem) =>
         demoApplyEditedTag(elem, elemClone);
         elem.style.visibility = "visible";
         dialogWrapper.remove();
-        packery.layout();
+        masonry.layout();
     });
 
     dialogWrapper.appendChild(elemClone);
