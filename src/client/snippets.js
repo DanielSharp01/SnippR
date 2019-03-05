@@ -1,4 +1,4 @@
-import Masonry from "../masonry/Masonry.js";
+import Masonry from "masonry/Masonry.js";
 import Snippets from "components/Snippets/Snippets";
 import React from "react";
 import ReactDOM from "react-dom";

@@ -1,4 +1,4 @@
-import Masonry from "../masonry/Masonry.js";
+import Masonry from "masonry/Masonry.js";
 import Tags from "components/Tags/Tags";
 import React from "react";
 import ReactDOM from "react-dom";
