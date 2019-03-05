@@ -1,16 +1,15 @@
-import Masonry from "./masonry/Masonry.js";
-import MasonryPanel from "./masonry/MasonryPanel.js";
-import Snippet from "./components/Snippet/Snippet.js";
-import Tag from "./components/Tag/Tag.js";
+import Masonry from "../masonry/Masonry.js";
+import MasonryPanel from "../masonry/MasonryPanel.js";
+import Snippet from "../components/Snippet/Snippet.js";
+import Tag from "../components/Tag/Tag.js";
 import React from "react";
 import ReactDOM from "react-dom";
 
 const masonry = new Masonry(document.querySelector(".masonry"));
 
-import "./sass/bootstrap.scss"
-import "./sass/general.scss"
-import "./sass/element.scss"
-import "./sass/element-dialog.scss"
+import "styles/general.scss"
+import "styles/element.scss"
+import "styles/element-dialog.scss"
 
 ReactDOM.render(<React.Fragment>
     <MasonryPanel>

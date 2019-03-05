@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SnippetTag from "./SnippetTag"
-import "../../sass/element.scss";
+import "styles/element.scss";
 
 class Snippet extends Component {
     render()
