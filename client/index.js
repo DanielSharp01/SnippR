@@ -1,6 +1,7 @@
 import Masonry from "./masonry/Masonry.js";
 import MasonryPanel from "./masonry/MasonryPanel.js";
-import Snippet from "./components/Snippet.js";
+import Snippet from "./components/Snippet/Snippet.js";
+import Tag from "./components/Tag/Tag.js";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -12,9 +13,20 @@ import "./sass/element.scss"
 import "./sass/element-dialog.scss"
 
 ReactDOM.render(<React.Fragment>
-    <MasonryPanel><Snippet /></MasonryPanel>
-    <MasonryPanel><Snippet /></MasonryPanel>
-    <MasonryPanel><Snippet /></MasonryPanel>
+    <MasonryPanel>
+        <Snippet id = {1} key = {1} content={'int randomInteger = rand() % max - min + 1) + min;'}
+            tags = {["C", "C++"]}
+            onDelete = {handleDelete}/>
+    </MasonryPanel>
+    <MasonryPanel>
+        <Snippet id = {2} key = {2} content={'Console.WriteLine("Hello World!");\nConsole.ReadLine();'}
+            tags = {["C#", "Hello World"]}
+            onDelete = {handleDelete}/>
+    </MasonryPanel>
+    <MasonryPanel>
+        <Tag id = {3} key = {3} content={'C#'}
+            onDelete = {handleDelete}/>
+    </MasonryPanel>
 </React.Fragment>, masonry.container);
 masonry.layout();
 
@@ -22,6 +34,11 @@ document.querySelector(".navbar-toggler").addEventListener("click", () => {
     document.querySelector(".sidenav").classList.toggle("show");
 });
 
+function handleDelete(id)
+{
+    console.log(`${id} deleted!`);
+}
+/*
 const eventsForElement = elem =>
 {
     elem.querySelector(".delete-button").addEventListener("click", e => 
@@ -211,4 +228,4 @@ const openDialogTag = (elem) =>
 const demoApplyEditedTag = (elem, elemClone) =>
 {
     elem.querySelector(".content").innerHTML = elemClone.querySelector(".content").innerHTML;
-};
+};*/

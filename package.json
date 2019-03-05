@@ -9,11 +9,12 @@
       "@babel/preset-react"
     ],
     "plugins": [
-        "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties"
     ]
   },
   "scripts": {
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "server": "node index.js"
   },
   "author": "Daniel Sharp",
   "license": "ISC",

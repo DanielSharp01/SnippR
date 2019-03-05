@@ -1,19 +1,21 @@
 import React, { Component } from "react";
-import "../sass/element.scss";
+import SnippetTag from "./SnippetTag"
+import "../../sass/element.scss";
 
 class Snippet extends Component {
     render()
     {
         return (
             <div className="snippet element">
-                <div className="content">int randomInteger = rand() % max - min + 1) + min;</div>
+                <div className="content">{this.props.content}</div>
                     <div className="tags">
-                        <div className="tag">C</div>
-                        <div className="tag">C++</div>
+                        {this.props.tags.map(tag =>
+                            <SnippetTag key={tag} name={tag} editMode={false}/>
+                        )}
                     </div>
                     <div className="toolbar">
                         <a className="add-tag-button tool editable-visibility">Add tag</a>
-                        <a className="delete-button tool danger">Delete</a>
+                        <a className="delete-button tool danger" onClick={() => this.props.onDelete(this.props.id)}>Delete</a>
                     </div>
                     <div className="comment-bar">
                         <div className="comment"> // Click into to edit</div>
