@@ -1,4 +1,8 @@
-import Masonry from "./masonry/masonry.js"
+import Masonry from "./masonry/Masonry.js";
+import MasonryPanel from "./masonry/MasonryPanel.js";
+import Snippet from "./components/Snippet.js";
+import React from "react";
+import ReactDOM from "react-dom";
 
 const masonry = new Masonry(document.querySelector(".masonry"));
 
@@ -6,7 +10,13 @@ import "./sass/bootstrap.scss"
 import "./sass/general.scss"
 import "./sass/element.scss"
 import "./sass/element-dialog.scss"
-import "./masonry/masonry.scss"
+
+ReactDOM.render(<React.Fragment>
+    <MasonryPanel><Snippet /></MasonryPanel>
+    <MasonryPanel><Snippet /></MasonryPanel>
+    <MasonryPanel><Snippet /></MasonryPanel>
+</React.Fragment>, masonry.container);
+masonry.layout();
 
 document.querySelector(".navbar-toggler").addEventListener("click", () => {
     document.querySelector(".sidenav").classList.toggle("show");

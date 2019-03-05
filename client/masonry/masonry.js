@@ -1,3 +1,5 @@
+import "./masonry.scss"
+
 class Masonry
 {
     constructor(elem)

@@ -13,7 +13,7 @@
     ]
   },
   "scripts": {
-    "create": "webpack"
+    "watch": "webpack --watch"
   },
   "author": "Daniel Sharp",
   "license": "ISC",
