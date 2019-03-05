@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-        snippet: "./src/client/snippet.js",
+        snippets: "./src/client/snippets.js",
+        tags: "./src/client/tags.js",
         login: "./src/client/login.js",
         bootstrap: "./src/client/styles/bootstrap.scss",
         general: "./src/client/styles/general.scss"
@@ -22,7 +23,8 @@ module.exports = {
     resolve: {
         alias: {
           styles: path.resolve(__dirname, 'src/client/styles/'),
-          components: path.resolve(__dirname, 'src/components/')
+          components: path.resolve(__dirname, 'src/components/'),
+          masonry: path.resolve(__dirname, 'src/masonry/')
         }
     },
     mode: "development",
@@ -30,7 +32,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: "prototype/index.html",
             template: "src/client/templates/index.html",
-            chunks: ["snippet", "common", "bootstrap", "general"]
+            chunks: ["snippets", "common", "bootstrap", "general"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: "prototype/tags.html",
+            template: "src/client/templates/tags.html",
+            chunks: ["tags", "common", "bootstrap", "general"]
         }),
         new HtmlWebpackPlugin({
             filename: "prototype/login.html",

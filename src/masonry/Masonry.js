@@ -5,6 +5,7 @@ class Masonry
     constructor(elem)
     {
         this.container = elem;
+        this.elementWidth = 500;
 
         document.addEventListener("DOMContentLoaded", this.layout);
         window.addEventListener("resize", this.layout);
@@ -51,7 +52,7 @@ class Masonry
 
     getColumnCount()
     {
-        return Math.floor(this.container.clientWidth / 500);
+        return Math.floor(this.container.clientWidth / this.elementWidth);
     }
 }
 
