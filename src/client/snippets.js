@@ -16,5 +16,9 @@ let initialState = {
     ]
 };
 
-ReactDOM.render(<Snippets initialState={initialState}/>, masonry.container);
+document.querySelector(".navbar-toggler").addEventListener("click", () => {
+    document.querySelector(".sidenav").classList.toggle("show");
+});
+
+ReactDOM.render(<Snippets masonry={masonry} initialState={initialState}/>, masonry.container);
 masonry.layout();

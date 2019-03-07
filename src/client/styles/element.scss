@@ -5,7 +5,7 @@
 {
     &.tag
     {
-        width: 350px;
+        width: 100%;
         
         .content
         {
@@ -13,14 +13,14 @@
         }
     }
 
-    width: 500px;
+    width: 100%;
     background: $element-color;
     display: flex;
     flex-direction: column;
     padding: 6px;
     transition: box-shadow 0.15s ease-in;
 
-    .content
+    div.content
     {
         padding: 14px;
         line-height: 1.5;
@@ -47,9 +47,28 @@
             transition: box-shadow 0.15s ease-in;
         }
 
+        
+
+        .transparent-text
+        {
+            background: none;
+            border: none;
+            outline: none;
+            color: $primary-fg;
+            padding: 0;
+        }
+
+        .measure-span
+        {
+            position: absolute;
+            visibility: hidden;
+            white-space: pre;
+        }
+
         .tag.new
         {
             background: $newtag-background;
+            padding: 10px;
         }
     }
 
@@ -87,11 +106,6 @@
             padding: 4px 0;
             color: $comment-color;
         }
-    }
-
-    .editable-visibility
-    {
-        display: none;
     }
 
     &:hover
