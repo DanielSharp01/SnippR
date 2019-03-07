@@ -3,4 +3,5 @@ node_modules/
 *.tmp
 *.zip
 *.zipignore
-public/
+public/*
+!public/prototype
