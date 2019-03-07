@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node src/server/index.js",
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
   "author": "Daniel Sharp",
   "license": "ISC",
   "dependencies": {
