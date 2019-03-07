@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SnippR</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/element.css">
-    <link rel="stylesheet" href="css/element-dialog.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <script src="packery.pkgd.min.js"></script>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/element.css">
+    <link rel="stylesheet" href="/css/element-dialog.css">
+    <link rel="stylesheet" href="/css/masonry.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -38,24 +38,26 @@
             <li class = "nav-item"><a href="/js.html">&gt; JS</a></li>
         </ul>
     </nav>
-
-    <main class="container-fluid content">
+    
+    <main class="container-fluid content masonry">
+        <div class="masonry-panel"><div class="masonry-content">
         <div class="element snippet">
-                <div class="content">int randomInteger = rand() % max - min + 1) + min;</div>
-                <div class="tags">
-                    <div class="tag">C</div>
-                    <div class="tag">C++</div>
-                </div>
-                <div class="toolbar">
-                    <a class="add-tag-button tool editable-visibility">Add tag</a>
+            <div class="content">int randomInteger = rand() % max - min + 1) + min;</div>
+            <div class="tags">
+                <div class="tag">C</div>
+                <div class="tag">C++</div>
+            </div>
+            <div class="toolbar">
+                <a class="add-tag-button tool editable-visibility">Add tag</a>
                     <a class="delete-button tool danger">Delete</a>
                 </div>
                 <div class="comment-bar">
                     <div class="comment"> // Click into to edit</div>
                     <div class="comment editable-visibility">// Click on a tag to remove it</div>
                 </div>
-            </div>
-    
+            </div></div></div>
+            
+            <div class="masonry-panel"><div class="masonry-content">
             <div class="element snippet">
                 <div class="content">Console.WriteLine("Hello World!");<br>Console.ReadLine();</div>
                 <div class="tags">
@@ -70,7 +72,9 @@
                     <div class="comment"> // Click into to edit</div>
                     <div class="comment editable-visibility">// Click on a tag to remove it</div>
                 </div>
-            </div>
+            </div></div></div>
+
+            <div class="masonry-panel"><div class="masonry-content">
             <div class="element snippet">
                 <div class="content">[] == ![] // true<br>[] + {} // [object Object]<br>{} + [] // 0</div>
                 <div class="tags">
@@ -84,10 +88,10 @@
                     <div class="comment"> // Click into to edit</div>
                     <div class="comment editable-visibility">// Click on a tag to remove it</div>
                 </div>
-            </div>
-    </main>
-
-    <script src="js/bootstrap-min.js"></script>
-    <script src="js/index.js"></script>
-</body>
-</html>
+            </div></div></div>
+        </main>
+        
+        <script src="/js/Masonry.js"></script>
+        <script src="/js/index.js"></script>
+    </body>
+    </html>

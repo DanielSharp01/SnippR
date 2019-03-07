@@ -19,21 +19,9 @@ gulp.task("js-copy", () => {
         .pipe(gulp.dest("public/js"));
 });
 
-gulp.task("bootstrap-js", () =>
-{
-    return gulp.src("node_modules/bootstrap/js/dist/*.js")
-        .pipe(concat("bootstrap-min.js"))
-        .pipe(uglify())
-        .pipe(gulp.dest("public/js"));
-});
 
-
-gulp.task("build", () =>
+gulp.task("build", (done) =>
 {
-    gulp.series("bootstrap-js", "sass-compile", "js-copy");
-});
-
-gulp.task("watch", () =>
-{
-    gulp.watch("sass/*.scss", gulp.series("sass-compile"));
+    gulp.parallel("sass-compile", "js-copy")();
+    done();
 });

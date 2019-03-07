@@ -20,7 +20,13 @@ button:focus
 
 .navbar-toggler
 {
+    color: $primary !important;
     margin-right: 8px;
+
+    &:focus
+    {
+        outline: none;
+    }
 }
 
 main.container-fluid
@@ -44,7 +50,7 @@ main.container-fluid
 .sidenav
 {
     z-index: 1;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     padding-top: 72px;

@@ -1,0 +1,24 @@
+.masonry
+{
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 100%;
+    align-content: flex-start;
+
+    .masonry-panel
+    {
+        width: 520px;
+        display: flex;
+
+        .masonry-content
+        {
+            padding: 10px;
+            width: 100%;
+        }
+    }
+
+    .masonry-panel.small
+    {
+        width: 370px;
+    }
+}
