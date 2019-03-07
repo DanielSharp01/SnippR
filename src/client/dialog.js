@@ -72,8 +72,8 @@ if (addTag)
 const ta = document.querySelector("textarea.content");
 if (ta)
 {
-    autoSizeTextArea(t);
-    t.addEventListener("input", (e) => autoSizeTextArea(e.target));
+    autoSizeTextArea(ta);
+    ta.addEventListener("input", (e) => autoSizeTextArea(e.target));
     
     ta.focus();
     ta.selectionStart = ta.selectionEnd = ta.value.length;
@@ -103,7 +103,6 @@ if (sef)
             hiddenInput.name = "tags[]";
             hiddenInput.value = tag.innerText;
             e.target.appendChild(hiddenInput);
-            console.log(hiddenInput);
         });
     })
 }
