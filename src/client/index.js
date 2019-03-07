@@ -10,32 +10,6 @@ document.querySelector(".navbar-toggler").addEventListener("click", () => {
 {
     e.stopPropagation();
     if (newTag !== false) newTag.finishEditing();
-
-    newTag = document.createElement("div");
-    newTag.finishEditing = () =>
-    {
-        newTag.classList.remove("new");
-        newTag.contentEditable = "false";
-        let tag = newTag;
-        newTag = false;
-        tag.addEventListener("click", e => 
-        {
-            tag.remove();
-        })
-    }
-    newTag.innerHTML = "new tag";
-    newTag.classList.add("tag", "new");
-    newTag.contentEditable = "true";
-
-    newTag.addEventListener("keydown", e =>
-    {
-        if (e.which == 13) newTag.finishEditing();
-    });
-
-    newTag.addEventListener("blur", e =>
-    {
-        newTag.finishEditing();
-    });
     
     elemClone.querySelector(".tags").appendChild(newTag);
     newTag.focus();

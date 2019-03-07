@@ -1,6 +1,27 @@
 @import "_custom-theme";
 @import "node_modules/bootstrap/scss/variables";
 
+a.btn
+{
+    cursor: pointer;
+}
+
+.transparent-text
+{
+    background: none;
+    border: none;
+    outline: none;
+    color: $primary-fg;
+    padding: 0;
+}
+
+.measure-span
+{
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+}
+
 button:focus
 {
     outline-color: $primary;

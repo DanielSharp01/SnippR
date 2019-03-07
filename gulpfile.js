@@ -25,3 +25,9 @@ gulp.task("build", (done) =>
     gulp.parallel("sass-compile", "js-copy")();
     done();
 });
+
+gulp.task("watch", () =>
+{
+    gulp.watch("src/sass/[^_]*.scss", gulp.series("sass-compile"));
+    gulp.watch("src/client/*.js", gulp.series("js-copy"));
+})
