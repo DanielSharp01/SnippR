@@ -4,5 +4,4 @@ node_modules/
 *.zip
 *.zipignore
 public/*
-!public/prototype
 !public/favicon.ico

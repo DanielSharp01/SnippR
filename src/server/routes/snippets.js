@@ -14,7 +14,8 @@ module.exports = (app) => {
         resolveTagsMW(objectRepository),
         updateSnippetMW(objectRepository),
         getSnippetListMW(objectRepository), // For snippets in the background
-        renderMW(objectRepository, "snippetAdd")
+        (req, res, next) => {res.locals.add = true; next();},
+        renderMW(objectRepository, "snippetMod")
     );
 
     app.use("/snippets/mod/:snippetid",

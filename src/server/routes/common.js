@@ -1,6 +1,5 @@
 const mainRedirectMW = require("../middlewares/common/mainRedirect");
 const redirectAuthedMW = require("../middlewares/common/redirectAuthed");
-const indexRedirectMW = require("../middlewares/common/indexRedirect");
 const loginMW = require("../middlewares/common/login");
 const logoutMW = require("../middlewares/common/logout");
 const renderMW = require("../middlewares/common/render");

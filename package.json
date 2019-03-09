@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server/index.js",
-    "start:dev": "nodemon src/server/index.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
     "build": "gulp build"
   },
   "author": "Daniel Sharp",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6"
   },
   "devDependencies": {
     "bootstrap": "^4.3.1",

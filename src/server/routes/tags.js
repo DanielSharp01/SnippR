@@ -12,7 +12,8 @@ module.exports = (app) => {
         authMW(objectRepository),
         updateTagMW(objectRepository),
         getTagListMW(objectRepository), // For snippets in the background
-        renderMW(objectRepository, "tagAdd")
+        (req, res, next) => {res.locals.add = true; next();},
+        renderMW(objectRepository, "tagMod")
     );
 
     app.use("/tags/mod/:tagid",
