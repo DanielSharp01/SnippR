@@ -1,9 +1,9 @@
 const authMW = require("../middlewares/common/auth");
 const renderMW = require("../middlewares/common/render");
-const getTagMW = require("../middlewares/snippets/getSnippet");
-const getTagListMW = require("../middlewares/snippets/getSnippetList");
-const updateTagMW = require("../middlewares/snippets/updateSnippet");
-const deleteTagMW = require("../middlewares/snippets/deleteSnippet");
+const getTagMW = require("../middlewares/tags/getTag");
+const getTagListMW = require("../middlewares/tags/getTagList");
+const updateTagMW = require("../middlewares/tags/updateTag");
+const deleteTagMW = require("../middlewares/tags/deleteTag");
 
 module.exports = (app) => {
     let objectRepository = {}
@@ -12,7 +12,6 @@ module.exports = (app) => {
         authMW(objectRepository),
         updateTagMW(objectRepository),
         getTagListMW(objectRepository), // For snippets in the background
-        (req, res, next) => {res.locals.add = true; next();},
         renderMW(objectRepository, "tagMod")
     );
 

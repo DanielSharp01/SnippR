@@ -42,58 +42,26 @@
     </nav>
 
     <main class="container-fluid content masonry">
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">int randomInteger = rand() % max - min + 1) + min;</div>
-                    <div class="tags">
-                        <div class="tag">C</div>
-                        <div class="tag">C++</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">Console.WriteLine("Hello World!");<br>Console.ReadLine();</div>
-                    <div class="tags">
-                        <div class="tag">C#</div>
-                        <div class="tag">Hello World</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
+        <% snippets.forEach((snippet) => { %>
+            <div class="masonry-panel">
+                <div class="masonry-content">
+                    <div class="element snippet" onclick="window.location='/snippets/mod/<%= snippet.id %>'">
+                        <div class="content"><%= snippet.content %></div>
+                        <div class="tags">
+                            <% snippet.tags.forEach((tag) => { %>
+                                <div class="tag"><%= tag %></div>
+                            <% }); %>
+                        </div>
+                        <div class="toolbar">
+                            <a class="delete-button tool danger" href="/snippets/del/<%= snippet.id %>">Delete</a>
+                        </div>
+                        <div class="comment-bar">
+                            <div class="comment"> // Click into to edit</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">[] == ![] // true<br>[] + {} // [object Object]<br>{} + [] // 0</div>
-                    <div class="tags">
-                        <div class="tag">JS</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <% }); %>
     </main>
 
     <script src="/js/Masonry.js"></script>

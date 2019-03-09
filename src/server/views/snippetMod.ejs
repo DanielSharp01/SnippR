@@ -43,77 +43,49 @@
     </nav>
 
     <main class="container-fluid content masonry">
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">int randomInteger = rand() % max - min + 1) + min;</div>
-                    <div class="tags">
-                        <div class="tag">C</div>
-                        <div class="tag">C++</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">Console.WriteLine("Hello World!");<br>Console.ReadLine();</div>
-                    <div class="tags">
-                        <div class="tag">C#</div>
-                        <div class="tag">Hello World</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
+        <% snippets.forEach((snippet) => { %>
+            <div class="masonry-panel">
+                <div class="masonry-content">
+                    <div class="element snippet">
+                        <div class="content"><%= snippet.content %></div>
+                        <div class="tags">
+                            <% snippet.tags.forEach((tag) => { %>
+                                <div class="tag"><%= tag %></div>
+                            <% }); %>
+                        </div>
+                        <div class="toolbar">
+                            <a class="delete-button tool danger" href="/snippets/del/<%= snippet.id %>">Delete</a>
+                        </div>
+                        <div class="comment-bar">
+                            <div class="comment"> // Click into to edit</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element snippet">
-                    <div class="content">[] == ![] // true<br>[] + {} // [object Object]<br>{} + [] // 0</div>
-                    <div class="tags">
-                        <div class="tag">JS</div>
-                    </div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <% }); %>
     </main>
 
     <div class="dialog-wrapper">
         <div class="element snippet">
             <form id="snippet-edit-form" method="POST">
-                <textarea class="content" name="content">[] == ![] // true<br>[] + {} // [object Object]<br>{} + [] // 0</textarea>
+                <textarea class="content" name="content"><%= editedSnippet.content %></textarea>
                 <div class="tags">
-                    <div class="tag">JS</div>
+                    <% editedSnippet.tags.forEach((tag) => { %>
+                        <div class="tag"><%= tag %></div>
+                    <% }); %>
                 </div>
                 <div class="toolbar">
                     <a class="add-tag-button tool">Add tag</a>
-                    <a class="delete-button tool danger">Delete</a>
+                    <% if (typeof editedSnippet === "undefined") { %>
+                        <a class="delete-button tool danger" href="/snippets/del/<%= editedSnippet.id %>">Delete</a>
+                    <% } %>
                 </div>
                 <div class="comment-bar">
                     <div class="comment"> // Click on a tag to remove</div>
                     <div class="comment"> // Click into to edit</div>
                 </div>
                 <div class="buttons">
-                    <a role="button" class="btn btn-secondary">Cancel</a>
+                    <a role="button" class="btn btn-secondary" href="/snippets">Cancel</a>
                     <button class="btn btn-primary">Submit</button>
                 </div>
             </form>

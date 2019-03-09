@@ -42,60 +42,21 @@
     </nav>
 
     <main class="container-fluid content masonry">
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element tag">
-                    <div class="content">C++</div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element tag">
-                    <div class="content">C</div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
+        <% tags.forEach((tag) => { %>
+            <div class="masonry-panel">
+                <div class="masonry-content">
+                    <div class="element tag" onclick="window.location='/tags/mod/<%= tag.id %>'">
+                        <div class="content"><%= tag.content %></div>
+                        <div class="toolbar">
+                            <a class="delete-button tool danger" href="/tags/del/<%= tag.id %>">Delete</a>
+                        </div>
+                        <div class="comment-bar">
+                            <div class="comment"> // Click into to edit</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element tag">
-                    <div class="content">C#</div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="masonry-panel">
-            <div class="masonry-content">
-                <div class="element tag">
-                    <div class="content">JS</div>
-                    <div class="toolbar">
-                        <a class="delete-button tool danger">Delete</a>
-                    </div>
-                    <div class="comment-bar">
-                        <div class="comment"> // Click into to edit</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <% }); %>
     </main>
 
     <script src="/js/Masonry.js"></script>
