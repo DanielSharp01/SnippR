@@ -1,5 +1,7 @@
 // Resolves addable tags in snippet add or mod requests
 
+const async = require("async");
+
 module.exports = (objectRepository) => {
     return (req, res, next) => {
         
@@ -7,27 +9,23 @@ module.exports = (objectRepository) => {
 
         // This may be easier with async library
         res.locals.resolvedTags = [];
-        Promise.all(req.body.tags.map(tag => { return objectRepository.Tag.findOne({"name": tag})
-            .then(dbtag => {
-                return { tag, dbtag };
-            });
-        }))
-        .then((findResults) => findResults.map(findResult => {
-            if (!findResult.dbtag)
+
+        async.mapSeries(req.body.tags, async tag => {
+            const dbTag = await objectRepository.Tag.findOne({"name": tag});
+            if (!dbTag)
             {
                 let newTag = new objectRepository.Tag();
-                newTag.name = findResult.tag;
-                return newTag.save().then(saveRes => saveRes._id);
+                newTag.name = tag;
+                newTag = await newTag.save();
+
+                if (!res.locals.resolvedTags.some(id => id.equals(newTag._id)))
+                    res.locals.resolvedTags.push(newTag._id);
             }
             else
             {
-                return Promise.resolve(findResult.dbtag._id);
+                if (!res.locals.resolvedTags.some(id => id.equals(dbTag._id)))
+                    res.locals.resolvedTags.push(dbTag._id);
             }
-        })).then(idPromises => {
-            Promise.all(idPromises).then(ids => {
-                ids.forEach(id => res.locals.resolvedTags.push(id));
-                next();
-            });
-        });
+        }, () => next());
     }
 }

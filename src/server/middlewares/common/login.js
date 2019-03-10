@@ -6,7 +6,7 @@ module.exports = (objectRepository) => {
             return next();
         
         // Hardcoded login
-        if (req.body.username === "admin" && req.body.username === "admin")
+        if (req.body.username === "admin" && req.body.password === "admin")
         {
             req.session.userId = 1;
             res.redirect("/");
