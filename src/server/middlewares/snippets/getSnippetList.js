@@ -1,12 +1,18 @@
-// Gets the list of snippets from the database
+const mongoose = require('mongoose');
 
+// Gets the list of snippets from the database
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        res.locals.activeTag = req.query.filter && parseInt(req.query.filter) // This cannot really live anywhere else
-        res.locals.snippets = [
-            {content: "test1", tags: ["test1", "test2"], id: 1},
-            {content: "test2", tags: ["test3", "test4"], id: 2}
-        ];
-        return next();
+        res.locals.activeTag = req.query.filter && req.query.filter;
+        
+        objectRepository.Snippet.find(res.locals.activeTag ?
+            {"tags": mongoose.Types.ObjectId(res.locals.activeTag)}
+            : {})
+        .populate("tags")
+        .exec((err, result) => {
+            if (err) { console.error(err); return next();}
+            res.locals.snippets = result;
+            return next();
+        });
     }
 }

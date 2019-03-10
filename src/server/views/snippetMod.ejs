@@ -9,7 +9,7 @@
                     <div class="content"><%= snippet.content %></div>
                     <div class="tags">
                         <% snippet.tags.forEach((tag) => { %>
-                            <div class="tag"><%= tag %></div>
+                            <div class="tag"><%= tag.name %></div>
                         <% }); %>
                     </div>
                     <div class="toolbar">
@@ -27,16 +27,16 @@
 <div class="dialog-wrapper">
     <div class="element snippet">
         <form id="snippet-edit-form" method="POST">
-            <textarea class="content" name="content"><%= editedSnippet.content %></textarea>
+            <textarea class="content" name="content"><%= (typeof snippet !== "undefined" && snippet) ? snippet.content : "" %></textarea>
             <div class="tags">
-                <% editedSnippet.tags.forEach((tag) => { %>
-                    <div class="tag"><%= tag %></div>
+                <% if (typeof snippet !== "undefined" && snippet) snippet.tags.forEach((tag) => { %>
+                    <div class="tag"><%= tag.name %></div>
                 <% }); %>
             </div>
             <div class="toolbar">
                 <a class="add-tag-button tool">Add tag</a>
-                <% if (typeof editedSnippet === "undefined") { %>
-                    <a class="delete-button tool danger" href="/snippets/del/<%= editedSnippet.id %>">Delete</a>
+                <% if (typeof snippet !== "undefined" && snippet) { %>
+                    <a class="delete-button tool danger" href="/snippets/del/<%= snippet.id %>">Delete</a>
                 <% } %>
             </div>
             <div class="comment-bar">

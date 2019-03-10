@@ -2,7 +2,10 @@
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        res.locals.editedTag = {content: "test1", id: 1};
-        return next();
+        objectRepository.Tag.findOne({"_id": req.params.tagid}).exec((err, result) => {
+            if (err) console.error(err);
+            res.locals.tag = result;
+            return next();
+        });
     }
 }

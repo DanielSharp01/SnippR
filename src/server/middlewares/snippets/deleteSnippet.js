@@ -2,6 +2,12 @@
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        return next();
+        if (!res.locals.snippet) return next();
+        
+        res.locals.snippet.remove((err) =>
+        {
+            if (err) console.error(err);
+            return next();
+        });
     }
 }

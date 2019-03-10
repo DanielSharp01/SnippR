@@ -7,9 +7,7 @@ const updateSnippetMW = require("../middlewares/snippets/updateSnippet");
 const deleteSnippetMW = require("../middlewares/snippets/deleteSnippet");
 const resolveTagsMW = require("../middlewares/snippets/resolveTags");
 
-module.exports = (app) => {
-    let objectRepository = {}
-
+module.exports = (app, objectRepository) => {
     app.use("/snippets/add",
         authMW(objectRepository),
         resolveTagsMW(objectRepository),

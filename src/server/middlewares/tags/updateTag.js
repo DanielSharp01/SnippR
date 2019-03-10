@@ -2,6 +2,21 @@
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        return next();
+        if (typeof req.body.name === "undefined") return next();
+
+        // Check name collision
+        objectRepository.Tag.findOne({"name": req.body.name}).exec((err, result) => {
+            if (err) {console.error(err); return next();}
+            if (result) return res.redirect("/tags");
+
+            let tag = (res.locals.tag) ? res.locals.tag : new objectRepository.Tag();
+            tag.name = req.body.name;
+            
+            tag.save((err) =>
+            {
+                if (err) {console.error(err); return next();}; 
+                res.redirect("/tags");
+            });
+        });
     }
 }

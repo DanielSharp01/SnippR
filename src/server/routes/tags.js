@@ -5,9 +5,7 @@ const getTagListMW = require("../middlewares/tags/getTagList");
 const updateTagMW = require("../middlewares/tags/updateTag");
 const deleteTagMW = require("../middlewares/tags/deleteTag");
 
-module.exports = (app) => {
-    let objectRepository = {}
-
+module.exports = (app, objectRepository) => {
     app.use("/tags/add",
         authMW(objectRepository),
         updateTagMW(objectRepository),

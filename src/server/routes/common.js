@@ -4,9 +4,7 @@ const loginMW = require("../middlewares/common/login");
 const logoutMW = require("../middlewares/common/logout");
 const renderMW = require("../middlewares/common/render");
 
-module.exports = (app) => {
-    let objectRepository = {}
-    
+module.exports = (app, objectRepository) => {
     app.use('/login', 
         redirectAuthedMW(objectRepository),
         loginMW(objectRepository),

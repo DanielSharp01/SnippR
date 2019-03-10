@@ -5,8 +5,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const commonRoutes = require("./src/server/routes/common");
-const snippetRoutes = require("./src/server/routes/tags");
-const tagRoutes = require("./src/server/routes/snippets");
+const tagRoutes = require("./src/server/routes/tags");
+const snippetRoutes = require("./src/server/routes/snippets");
+
+const objectRepository = {
+    Snippet: require("./src/server/model/Snippet"),
+    Tag: require("./src/server/model/Tag")
+}
 
 app.set('view engine', 'ejs');
 app.set('views','./src/server/views');
@@ -22,9 +27,9 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-commonRoutes(app);
-snippetRoutes(app);
-tagRoutes(app);
+commonRoutes(app, objectRepository);
+snippetRoutes(app, objectRepository);
+tagRoutes(app, objectRepository);
 
 app.listen(8080, function () {
     console.log("Listening on 8080")

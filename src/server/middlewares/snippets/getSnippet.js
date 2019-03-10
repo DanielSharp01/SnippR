@@ -2,7 +2,12 @@
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        res.locals.editedSnippet = {content: "test1", tags: ["test1", "test2"], id: 1};
-        return next();
+        objectRepository.Snippet.findOne({"_id": req.params.snippetid})
+        .populate("tags")
+        .exec((err, result) => {
+            if (err) console.error(err);
+            res.locals.snippet = result;
+            return next();
+        });
     }
 }

@@ -2,6 +2,12 @@
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        return next();
+        if (!res.locals.tag) return next();
+        
+        res.locals.tag.remove((err) =>
+        {
+            if (err) console.error(err);
+            return next();
+        });
     }
 }
