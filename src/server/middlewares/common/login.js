@@ -1,3 +1,5 @@
+// Checks information and logs in the user if it's correct
+
 module.exports = (objectRepository) => {
     return (req, res, next) => {
         if (typeof req.body.username === 'undefined' || typeof req.body.password === 'undefined')

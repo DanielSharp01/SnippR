@@ -1,3 +1,5 @@
+// Gets the list of tags from the database
+
 module.exports = (objectRepository) => {
     return (req, res, next) => {
         res.locals.tags = [

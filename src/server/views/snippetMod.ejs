@@ -1,100 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("header", {dialog: true}); %>
+<%- include("sidenav", { tags: tags, active: activeTag || "snippets" }); %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SnippR</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="/css/general.css">
-    <link rel="stylesheet" href="/css/element.css">
-    <link rel="stylesheet" href="/css/element-dialog.css">
-    <link rel="stylesheet" href="/css/masonry.css">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-</head>
-
-<body class="has-dialog">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <div class="navbar-toggler-wrapper"><button class="navbar-toggler"><i class="fas fa-bars fa-1x"></i></button>
-        </div>
-        <a class="navbar-brand" href="#"><span class="blinking">&gt;</span> <span id="current-tag">SnippR</span></a>
-        <ul class="nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a>
-            </li>
-            <li class="nav-item" id="profile-picture">D</li>
-            </div>
-    </nav>
-
-    <nav class="sidenav">
-        <ul class="nav">
-            <li class="nav-item"><a id="add-snippet-button" role="button">+ Add snippet</a></li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-item active"><a>* All snippets</a></li>
-            <li class="nav-item"><a href="/tags.html">~ All tags</a></li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-item"><a href="/c.html">&gt; C</a></li>
-            <li class="nav-item"><a href="/cpp.html">&gt; C++</a></li>
-            <li class="nav-item"><a href="/cs.html">&gt; C#</a></li>
-            <li class="nav-item"><a href="/js.html">&gt; JS</a></li>
-        </ul>
-    </nav>
-
-    <main class="container-fluid content masonry">
-        <% snippets.forEach((snippet) => { %>
-            <div class="masonry-panel">
-                <div class="masonry-content">
-                    <div class="element snippet">
-                        <div class="content"><%= snippet.content %></div>
-                        <div class="tags">
-                            <% snippet.tags.forEach((tag) => { %>
-                                <div class="tag"><%= tag %></div>
-                            <% }); %>
-                        </div>
-                        <div class="toolbar">
-                            <a class="delete-button tool danger" href="/snippets/del/<%= snippet.id %>">Delete</a>
-                        </div>
-                        <div class="comment-bar">
-                            <div class="comment"> // Click into to edit</div>
-                        </div>
+<main class="container-fluid content masonry">
+    <% snippets.forEach((snippet) => { %>
+        <div class="masonry-panel">
+            <div class="masonry-content">
+                <div class="element snippet">
+                    <div class="content"><%= snippet.content %></div>
+                    <div class="tags">
+                        <% snippet.tags.forEach((tag) => { %>
+                            <div class="tag"><%= tag %></div>
+                        <% }); %>
+                    </div>
+                    <div class="toolbar">
+                        <a class="delete-button tool danger" href="/snippets/del/<%= snippet.id %>">Delete</a>
+                    </div>
+                    <div class="comment-bar">
+                        <div class="comment"> // Click into to edit</div>
                     </div>
                 </div>
             </div>
-        <% }); %>
-    </main>
-
-    <div class="dialog-wrapper">
-        <div class="element snippet">
-            <form id="snippet-edit-form" method="POST">
-                <textarea class="content" name="content"><%= editedSnippet.content %></textarea>
-                <div class="tags">
-                    <% editedSnippet.tags.forEach((tag) => { %>
-                        <div class="tag"><%= tag %></div>
-                    <% }); %>
-                </div>
-                <div class="toolbar">
-                    <a class="add-tag-button tool">Add tag</a>
-                    <% if (typeof editedSnippet === "undefined") { %>
-                        <a class="delete-button tool danger" href="/snippets/del/<%= editedSnippet.id %>">Delete</a>
-                    <% } %>
-                </div>
-                <div class="comment-bar">
-                    <div class="comment"> // Click on a tag to remove</div>
-                    <div class="comment"> // Click into to edit</div>
-                </div>
-                <div class="buttons">
-                    <a role="button" class="btn btn-secondary" href="/snippets">Cancel</a>
-                    <button class="btn btn-primary">Submit</button>
-                </div>
-            </form>
         </div>
+    <% }); %>
+</main>
+
+<div class="dialog-wrapper">
+    <div class="element snippet">
+        <form id="snippet-edit-form" method="POST">
+            <textarea class="content" name="content"><%= editedSnippet.content %></textarea>
+            <div class="tags">
+                <% editedSnippet.tags.forEach((tag) => { %>
+                    <div class="tag"><%= tag %></div>
+                <% }); %>
+            </div>
+            <div class="toolbar">
+                <a class="add-tag-button tool">Add tag</a>
+                <% if (typeof editedSnippet === "undefined") { %>
+                    <a class="delete-button tool danger" href="/snippets/del/<%= editedSnippet.id %>">Delete</a>
+                <% } %>
+            </div>
+            <div class="comment-bar">
+                <div class="comment"> // Click on a tag to remove</div>
+                <div class="comment"> // Click into to edit</div>
+            </div>
+            <div class="buttons">
+                <a role="button" class="btn btn-secondary" href="/snippets">Cancel</a>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script src="/js/Masonry.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/dialog.js"></script>
-</body>
-
-</html>
+<script src="/js/dialog.js"></script>
+<%- include("footer", {}) %>
+<script src="/js/index.js"></script>

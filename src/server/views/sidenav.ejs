@@ -1,0 +1,27 @@
+<nav class="sidenav">
+    <ul class="nav">
+        <li class="nav-item"><a id="add-snippet-button" role="button">+ Add snippet</a></li>
+    </ul>
+    <ul class="nav">
+        <% if (active === "snippets") { %>
+            <li class="nav-item active"><a>* All snippets</a></li>
+        <% } else { %>
+            <li class="nav-item"><a href="/snippets">* All snippets</a></li>
+        <% } %>
+
+        <% if (active === "tags") { %>
+            <li class="nav-item active"><a>~ All tags</a></li>
+        <% } else { %>
+            <li class="nav-item"><a href="/tags">~ All tags</a></li>
+        <% } %>
+    </ul>
+    <ul class="nav">
+        <% tags.forEach((tag) => { %>
+            <% if (active === tag.id) { %>
+                <li class="nav-item active"><a>&gt; <%= tag.content %></a></li>
+            <% } else { %>
+                <li class="nav-item"><a href="/snippets?filter=<%= tag.id %>">&gt; <%= tag.content %></a></li>
+            <% } %>
+        <% }); %>
+    </ul>
+</nav>
