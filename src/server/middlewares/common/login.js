@@ -9,7 +9,7 @@ module.exports = (objectRepository) => {
         if (req.body.username === "admin" && req.body.password === "admin")
         {
             req.session.userId = 1;
-            res.redirect("/");
+            return res.redirect("/");
         }
         else return next();
     }

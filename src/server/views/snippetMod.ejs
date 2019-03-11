@@ -1,5 +1,6 @@
+<% activeTag = activeTag || "snippets"; %>
 <%- include("header", {dialog: true}); %>
-<%- include("sidenav", { tags: tags, active: activeTag || "snippets" }); %>
+<%- include("sidenav", { tags: tags, active: activeTag }); %>
 
 <main class="container-fluid content masonry">
     <% snippets.forEach((snippet) => { %>
@@ -31,7 +32,9 @@
             <div class="tags">
                 <% if (typeof snippet !== "undefined" && snippet) snippet.tags.forEach((tag) => { %>
                     <div class="tag"><%= tag.name %></div>
-                <% }); %>
+                <% }); else if (activeTag && activeTag != "snippets") { %>
+                    <div class="tag"><%= activeTag.name %></div>
+                <% } %>
             </div>
             <div class="toolbar">
                 <a class="add-tag-button tool">Add tag</a>

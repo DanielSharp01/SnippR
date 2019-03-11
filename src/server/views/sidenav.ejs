@@ -3,8 +3,8 @@
         <% if (active === "tags") { %>
             <li class="nav-item"><a href="/tags/add" id="add-snippet-button" role="button">+ Add tag</a></li>
         <% } else {
-            let snippetAddUrl = "/snippets/add" + (active !== "snippets" ? `?tag=${active}` : "")%>
-            <li class="nav-item"><a href="/snippets/add" id="add-snippet-button" role="button">+ Add snippet</a></li>
+            let snippetAddUrl = "/snippets/add" + (active !== "snippets" ? `?filter=${active._id}` : "")%>
+            <li class="nav-item"><a href="<%= snippetAddUrl %>" id="add-snippet-button" role="button">+ Add snippet</a></li>
         <% } %>
     </ul>
     <ul class="nav">
@@ -22,7 +22,7 @@
     </ul>
     <ul class="nav">
         <% tags.forEach((tag) => { %>
-            <% if (active === tag.id) { %>
+            <% if (active && typeof active === "object" && active._id.equals(tag._id)) { %>
                 <li class="nav-item active"><a>&gt; <%= tag.name %></a></li>
             <% } else { %>
                 <li class="nav-item"><a href="/snippets?filter=<%= tag.id %>">&gt; <%= tag.name %></a></li>

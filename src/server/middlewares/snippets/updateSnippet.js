@@ -11,7 +11,7 @@ module.exports = (objectRepository) => {
         snippet.save((err) =>
         {
             if (err) {console.error(err); return next();}; 
-            return res.redirect("/snippets");
+            return res.redirect("/snippets" + (req.query.tag ? `?filter=${req.query.tag}` : ""));
         });
     }
 }
