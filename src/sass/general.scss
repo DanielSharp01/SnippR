@@ -157,3 +157,16 @@ main.container-fluid
         width: auto;
     }
 }
+
+body.error
+{
+  background: #0e0e0e;
+  color: $primary;
+  font-size: $font-size-lg;
+  padding: 20px;
+
+  div.danger
+  {
+    color: $danger;
+  }
+}

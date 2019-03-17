@@ -8,8 +8,13 @@ module.exports = (objectRepository) => {
     let snippet = (res.locals.snippet) ? res.locals.snippet : new objectRepository.Snippet();
     snippet.content = req.body.content;
     snippet.tags = res.locals.resolvedTags;
+
+    if (snippet.isNew) {
+      res.locals.snippet = snippet;
+    }
+
     snippet.save((err) => {
-      if (err) { console.error(err); return next(); };
+      if (err) { return next(err); };
       return res.redirect("/snippets" + (req.query.tag ? `?filter=${req.query.tag}` : ""));
     });
   }

@@ -5,14 +5,18 @@ module.exports = (objectRepository) => {
 
     // Check name collision
     objectRepository.Tag.findOne({ "name": req.body.name }).exec((err, result) => {
-      if (err) { console.error(err); return next(); }
+      if (err) { return next(err); }
       if (result) return res.redirect("/tags");
 
       let tag = (res.locals.tag) ? res.locals.tag : new objectRepository.Tag();
       tag.name = req.body.name;
 
+      if (tag.isNew) {
+        res.locals.tag = tag;
+      }
+
       tag.save((err) => {
-        if (err) { console.error(err); return next(); };
+        if (err) { return next(err); };
         res.redirect("/tags");
       });
     });

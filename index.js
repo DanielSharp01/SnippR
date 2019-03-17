@@ -36,6 +36,7 @@ app.listen(8080, function () {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send("A team of highly trained monkeys has been dispatched to deal with this situation.");
-  console.error(err.stack);
+  if (err.stack) console.error(err.stack);
+  else console.err(err);
+  res.status(500).render("error", { statusCode: res.statusCode });
 });

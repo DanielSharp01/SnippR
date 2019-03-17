@@ -5,7 +5,7 @@ module.exports = (objectRepository) => {
     if (!res.locals.tag) return next();
 
     res.locals.tag.remove((err) => {
-      if (err) console.error(err);
+      if (err) return next(err);
       return next();
     });
   }

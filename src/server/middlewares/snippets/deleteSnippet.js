@@ -5,7 +5,7 @@ module.exports = (objectRepository) => {
     if (!res.locals.snippet) return next();
 
     res.locals.snippet.remove((err) => {
-      if (err) console.error(err);
+      if (err) return next(err);
       return next();
     });
   }

@@ -5,8 +5,11 @@ module.exports = (objectRepository) => {
     objectRepository.Snippet.findOne({ "_id": req.params.snippetid })
       .populate("tags")
       .exec((err, result) => {
-        if (err) console.error(err);
+        if (err) return next(err);
         res.locals.snippet = result;
+
+        if (!result) return next(new Error("No snippet with id " + req.params.snippetid));
+
         return next();
       });
   }

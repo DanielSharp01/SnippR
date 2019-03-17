@@ -11,6 +11,6 @@ module.exports = (objectRepository) => {
         .populate("tags");
     })
       .then(snippets => { res.locals.snippets = snippets; return next(); })
-      .catch(err => { console.log("Error"); return next(); });
+      .catch(err => { return next(err); });
   }
 }
