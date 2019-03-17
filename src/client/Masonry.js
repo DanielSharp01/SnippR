@@ -1,54 +1,49 @@
-class Masonry
-{
-    constructor(elem)
-    {
-        this.container = elem;
+class Masonry {
+  constructor(elem) {
+    this.container = elem;
 
-        document.addEventListener("DOMContentLoaded", this.layout);
-        window.addEventListener("resize", this.layout);
-    }
+    document.addEventListener("DOMContentLoaded", this.layout);
+    window.addEventListener("resize", this.layout);
+  }
 
-    layout = () =>
-    {
-        // Reset
-        const panels = this.container.querySelectorAll(".masonry-panel");
-        const paddings = this.container.querySelectorAll(".masonry-padding");
-        let heights = [];
-        paddings.forEach(p => p.remove());
-        this.container.removeAttribute("style");
-        
-        // Compute heights and flexbox order
-        const colCount = this.getColumnCount();
+  layout = () => {
+    // Reset
+    const panels = this.container.querySelectorAll(".masonry-panel");
+    const paddings = this.container.querySelectorAll(".masonry-padding");
+    let heights = [];
+    paddings.forEach(p => p.remove());
+    this.container.removeAttribute("style");
 
-        panels.forEach((p, i) => {
-            const {height} = getComputedStyle(p);
-            const order = ((i + 1) % colCount == 0) ? colCount : (i + 1) % colCount;
-            p.style.order = order;
+    // Compute heights and flexbox order
+    const colCount = this.getColumnCount();
 
-            if (!heights[order - 1]) heights[order - 1] = 0;
-            
-            heights[order - 1] += parseFloat(height);
-        });
+    panels.forEach((p, i) => {
+      const { height } = getComputedStyle(p);
+      const order = ((i + 1) % colCount == 0) ? colCount : (i + 1) % colCount;
+      p.style.order = order;
 
-        // Set container height to wrap
-        const maxHeight = Math.max(...heights);
-        this.container.style.height = `${maxHeight}px`;
+      if (!heights[order - 1]) heights[order - 1] = 0;
 
-        //Setup paddings
-        heights.map((height, i) => {
-            if (height < maxHeight && height > 0)
-            {
-                const padding = document.createElement("div");
-                padding.className = "masonry-padding";
-                padding.style.height = `${maxHeight - height}px`;
-                padding.style.order = i + 1;
-                this.container.appendChild(padding);
-            }
-        });
-    }
+      heights[order - 1] += parseFloat(height);
+    });
 
-    getColumnCount()
-    {
-        return Math.floor(this.container.clientWidth / this.elementWidth);
-    }
+    // Set container height to wrap
+    const maxHeight = Math.max(...heights);
+    this.container.style.height = `${maxHeight}px`;
+
+    //Setup paddings
+    heights.map((height, i) => {
+      if (height < maxHeight && height > 0) {
+        const padding = document.createElement("div");
+        padding.className = "masonry-padding";
+        padding.style.height = `${maxHeight - height}px`;
+        padding.style.order = i + 1;
+        this.container.appendChild(padding);
+      }
+    });
+  }
+
+  getColumnCount() {
+    return Math.floor(this.container.clientWidth / this.elementWidth);
+  }
 }

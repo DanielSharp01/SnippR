@@ -8,36 +8,36 @@ const deleteSnippetMW = require("../middlewares/snippets/deleteSnippet");
 const resolveTagsMW = require("../middlewares/snippets/resolveTags");
 
 module.exports = (app, objectRepository) => {
-    app.use("/snippets/add",
-        authMW(objectRepository),
-        resolveTagsMW(objectRepository),
-        updateSnippetMW(objectRepository),
-        getSnippetListMW(objectRepository), // For snippets in the background
-        getTagListMW(objectRepository), // For tags in the background in the side menu
-        renderMW(objectRepository, "snippetMod")
-    );
+  app.use("/snippets/add",
+    authMW(objectRepository),
+    resolveTagsMW(objectRepository),
+    updateSnippetMW(objectRepository),
+    getSnippetListMW(objectRepository), // For snippets in the background
+    getTagListMW(objectRepository), // For tags in the background in the side menu
+    renderMW(objectRepository, "snippetMod")
+  );
 
-    app.use("/snippets/mod/:snippetid",
-        authMW(objectRepository),
-        getSnippetMW(objectRepository),
-        resolveTagsMW(objectRepository),
-        updateSnippetMW(objectRepository),
-        getSnippetListMW(objectRepository), // For snippets in the background
-        getTagListMW(objectRepository), // For tags in the background in the side menu
-        renderMW(objectRepository, "snippetMod")
-    );
+  app.use("/snippets/mod/:snippetid",
+    authMW(objectRepository),
+    getSnippetMW(objectRepository),
+    resolveTagsMW(objectRepository),
+    updateSnippetMW(objectRepository),
+    getSnippetListMW(objectRepository), // For snippets in the background
+    getTagListMW(objectRepository), // For tags in the background in the side menu
+    renderMW(objectRepository, "snippetMod")
+  );
 
-    app.use("/snippets/del/:snippetid",
-        authMW(objectRepository),
-        getSnippetMW(objectRepository),
-        deleteSnippetMW(objectRepository),
-        (req, res, next) => res.redirect("/snippets")
-    );
+  app.use("/snippets/del/:snippetid",
+    authMW(objectRepository),
+    getSnippetMW(objectRepository),
+    deleteSnippetMW(objectRepository),
+    (req, res, next) => res.redirect("/snippets")
+  );
 
-    app.get("/snippets", 
-        authMW(objectRepository),
-        getSnippetListMW(objectRepository),
-        getTagListMW(objectRepository), // For tags in the side menu
-        renderMW(objectRepository, "snippetList")
-    );
+  app.get("/snippets",
+    authMW(objectRepository),
+    getSnippetListMW(objectRepository),
+    getTagListMW(objectRepository), // For tags in the side menu
+    renderMW(objectRepository, "snippetList")
+  );
 }

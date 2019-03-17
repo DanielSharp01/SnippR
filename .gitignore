@@ -5,3 +5,4 @@ node_modules/
 *.zipignore
 public/*
 !public/favicon.ico
+.vscode

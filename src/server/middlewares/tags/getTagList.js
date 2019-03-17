@@ -1,11 +1,10 @@
-// Gets the list of tags from the database
+// Get the list of tags from the database
 
 module.exports = (objectRepository) => {
-    return (req, res, next) => {
-        objectRepository.Tag.find({}).exec((err, result) =>
-        {
-            res.locals.tags = result;
-            return next();
-        });
-    }
+  return (req, res, next) => {
+    objectRepository.Tag.find({}).exec((err, result) => {
+      res.locals.tags = result;
+      return next();
+    });
+  }
 }

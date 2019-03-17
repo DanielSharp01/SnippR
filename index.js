@@ -9,19 +9,19 @@ const tagRoutes = require("./src/server/routes/tags");
 const snippetRoutes = require("./src/server/routes/snippets");
 
 const objectRepository = {
-    Snippet: require("./src/server/model/Snippet"),
-    Tag: require("./src/server/model/Tag")
+  Snippet: require("./src/server/model/Snippet"),
+  Tag: require("./src/server/model/Tag")
 }
 
 app.set('view engine', 'ejs');
-app.set('views','./src/server/views');
+app.set('views', './src/server/views');
 
 app.use(express.static('./public'));
 
 app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: false
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: false
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,10 +32,10 @@ snippetRoutes(app, objectRepository);
 tagRoutes(app, objectRepository);
 
 app.listen(8080, function () {
-    console.log("Listening on 8080")
+  console.log("Listening on 8080")
 });
 
 app.use((err, req, res, next) => {
-    res.status(500).send("A team of highly trained monkeys has been dispatched to deal with this situation.");
-    console.error(err.stack);
+  res.status(500).send("A team of highly trained monkeys has been dispatched to deal with this situation.");
+  console.error(err.stack);
 });
