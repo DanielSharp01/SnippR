@@ -9,12 +9,29 @@ module.exports = (objectRepository) => {
 
     res.locals.resolvedTags = [];
 
+    let err = undefined;
     async.mapSeries(req.body.tags, async tag => {
-      const dbTag = await objectRepository.Tag.findOne({ "name": tag });
+      if (err) return;
+
+      let dbTag;
+      try {
+        dbTag = await objectRepository.Tag.findOne({ "name": tag });
+      }
+      catch (e) {
+        err = e;
+        return;
+      }
+
       if (!dbTag) {
         let newTag = new objectRepository.Tag();
         newTag.name = tag;
-        newTag = await newTag.save();
+        try {
+          newTag = await newTag.save();
+        }
+        catch (e) {
+          err = e;
+          return;
+        }
 
         if (!res.locals.resolvedTags.some(id => id.equals(newTag._id)))
           res.locals.resolvedTags.push(newTag._id);
@@ -23,6 +40,6 @@ module.exports = (objectRepository) => {
         if (!res.locals.resolvedTags.some(id => id.equals(dbTag._id)))
           res.locals.resolvedTags.push(dbTag._id);
       }
-    }, () => next());
+    }, () => next(err));
   }
 }
